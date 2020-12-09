@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const path = require("path");
-const nanoid = require("nanoid");
 
 // GET home
 router.get("/", (req, res) =>
