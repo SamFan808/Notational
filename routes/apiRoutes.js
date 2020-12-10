@@ -1,10 +1,6 @@
 const router = require("express").Router();
-const nanoid = require("nanoid");
 const path = require("path");
-// const bodyParser = require("body-parser");
-// const express = require("express");
-// const app = express();
-// app.use(bodyParser.json());
+const fs = require("fs");
 
 // GET for api/notes
 router.get("/api/notes", (req, res) =>
@@ -13,18 +9,22 @@ router.get("/api/notes", (req, res) =>
 
 // POST for api/notes
 router.post("/api/notes", (req, res) => {
-  res.sendFile(path.join(__dirname, "../db/db.json"));
+  let db = JSON.parse(fs.readFileSync("./db/db.json"), "utf8");
+  let newNote = req.body;
+  let uniqueId = db.length.toString();
+  newNote.id = uniqueId;
+  db.push(newNote);
+  fs.writeFileSync("./db/db.json", JSON.stringify(db), "utf8", (err) => {
+    if (err) throw err;
+    console.log("file has been saved");
+  });
+  res.json(db);
   console.log(req.body);
 });
 
-// router.post("/api/notes", (req, res) =>
-//   res.sendFile(path.join(__dirname, "../db/db.json"))
-// );
-// something here to display notes?
-
 // DELETE for api/notes
-router.delete("/api/notes", (req, res) =>
-  res.sendFile(path.join(__dirname, "../db/db.json"))
-);
+router.delete("/api/notes", (req, res) => {
+  let;
+});
 
 module.exports = router;
