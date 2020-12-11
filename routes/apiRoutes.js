@@ -20,11 +20,21 @@ router.post("/api/notes", (req, res) => {
   });
   res.json(db);
   console.log(req.body);
+  console.log(req);
 });
 
 // DELETE for api/notes
 router.delete("/api/notes", (req, res) => {
-  let;
+  let db = JSON.parse(fs.readFileSync("./db/db.json"), "utf8");
+  let newNote = req.body;
+  // set api/notes/"id of object" to the object
+
+  // write new req.body back to file
+  fs.writeFileSync("./db/db.json", JSON.stringify(db), "utf8", (err) => {
+    if (err) throw err;
+    console.log("file has been saved");
+  });
+  res.json(db);
 });
 
 module.exports = router;
