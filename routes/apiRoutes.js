@@ -19,17 +19,24 @@ router.post("/api/notes", (req, res) => {
     console.log("file has been saved");
   });
   res.json(db);
-  console.log(req.body);
-  console.log(req);
 });
 
 // DELETE for api/notes
-router.delete("/api/notes", (req, res) => {
+router.delete("/api/notes/:id", (req, res) => {
   let db = JSON.parse(fs.readFileSync("./db/db.json"), "utf8");
-  let newNote = req.body;
-  // set api/notes/"id of object" to the object
-
-  // write new req.body back to file
+  let noteId = req.params.id;
+  let makeId = 0;
+  console.log(`Deleting note with id of ${noteId}`);
+  // filters out note selected for deletion from the remaining notes without the same id
+  db = db.filter((noteNow) => {
+    return noteNow.id != noteId;
+  });
+  // loop through and renumber remaining notes
+  for (noteNow of db) {
+    noteNow.id = makeId.toString();
+    makeId++;
+  }
+  // write new req.body back to db file
   fs.writeFileSync("./db/db.json", JSON.stringify(db), "utf8", (err) => {
     if (err) throw err;
     console.log("file has been saved");
