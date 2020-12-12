@@ -6,7 +6,7 @@
 
 ## Description
 
-Note Taking application, utilizing Express and node.js on the server back end.
+Note Taking application, utilizing Express and Node.js on the server back end.
 
 ## Table of Contents
 
