@@ -11,6 +11,7 @@ router.get("/api/notes", (req, res) =>
 router.post("/api/notes", (req, res) => {
   let db = JSON.parse(fs.readFileSync("./db/db.json"), "utf8");
   let newNote = req.body;
+  // sets the id of each note when saved
   let uniqueId = db.length.toString();
   newNote.id = uniqueId;
   db.push(newNote);
