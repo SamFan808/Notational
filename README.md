@@ -6,7 +6,7 @@
 
 ## Description
 
-Note Taking application
+Note Taking application, utilizing Express and node.js on the server back end.
 
 ## Table of Contents
 
