@@ -38,7 +38,7 @@ N/A
 
 ## Languages
 
-Javascript, Node.js, Express, (HTML, CSS - provided code)
+Javascript, Node.js, Express, HTML, CSS
 
 ## Testing
 
